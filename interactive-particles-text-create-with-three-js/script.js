@@ -97,7 +97,7 @@ class CreateParticles {
 
 		this.data = {
 
-			text: 'INTERACTIVE\nIMAGINATION',
+			text: 'EXPERIENCIAS\nINTERACTIVAS',
 			amount: 1500,
 			particleSize: 1,
 			particleColor: 0xffffff,
