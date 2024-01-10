@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  background: url(https://images.unsplash.com/photo-1583244685026-d8519b5e3d21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4140&q=80);
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  perspective: 1000px;
+}
+
+div {
+  position: absolute;
+  width: 40vw;
+  height: 60vh;
+  inset: 0;
+  margin: auto;
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.15), 0 -10px 20px -5px rgba(0,0,0,0.3) inset, 0 150px 100px -80px rgba(0,0,0,0.4);
+  transform: translateY(0px) rotateY(20deg) scale(1);
+  transition: all .3s ease;
+}
+
+span {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  --offset: 40%;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  -webkit-mask-image: linear-gradient(to right, transparent calc(var(--x) - var(--offset)), black var(--x), transparent calc(var(--x) + var(--offset)));
+  transition: all 1s ease;
+}
+span:nth-of-type(1) {
+  --blur: 24px;
+  --x: 12.5%;
+}
+span:nth-of-type(2) {
+  --blur: 20px;
+  --x: 25%;
+}
+span:nth-of-type(3) {
+  --blur: 16px;
+  --x: 37.5%;
+}
+span:nth-of-type(4) {
+  --blur: 12px;
+  --x: 50%;
+}
+span:nth-of-type(5) {
+  --blur: 8px;
+  --x: 62.5%;
+}
+span:nth-of-type(6) {
+  --blur: 4px;
+  --x: 75%;
+}
+span:nth-of-type(7) {
+  --blur: 2px;
+  --x: 87.5%;
+}
+span:nth-of-type(8) {
+  --blur: 0px;
+  --x: 120%;
+}
+
+div:hover {
+  transform: translateY(0px) rotateY(-20deg) scale(1);
+}
+div:hover span:nth-of-type(1) {
+  --blur: 0px;
+  --x: 12.5%;
+}
+div:hover span:nth-of-type(2) {
+  --blur: 2px;
+  --x: 25%;
+}
+div:hover span:nth-of-type(3) {
+  --blur: 4px;
+  --x: 37.5%;
+}
+div:hover span:nth-of-type(4) {
+  --blur: 8px;
+  --x: 50%;
+}
+div:hover span:nth-of-type(5) {
+  --blur: 12px;
+  --x: 62.5%;
+}
+div:hover span:nth-of-type(6) {
+  --blur: 16px;
+  --x: 75%;
+}
+div:hover span:nth-of-type(7) {
+  --blur: 20px;
+  --x: 87.5%;
+}
+div:hover span:nth-of-type(8) {
+  --blur: 24px;
+  --x: 120%;
+}
+

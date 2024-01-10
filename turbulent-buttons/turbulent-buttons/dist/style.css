@@ -1,0 +1,317 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+body,
+html {
+  height: 100%;
+  display: grid;
+  --db: #0a1347;
+  --bg: #f5e8df;
+  --r: #e1504a;
+  background: var(--bg);
+  --expo: cubic-bezier(1, 0, 0, 1);
+  --elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: "Hubballi";
+  font-weight: 900;
+}
+
+#container {
+  margin: auto;
+  text-align: center;
+  transform: translateY(-5vw);
+}
+
+p {
+  text-align: center;
+  font-size: 6vw;
+  text-transform: uppercase;
+  color: var(--db);
+  margin: 0 0 5vw;
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+}
+p:before {
+  content: "";
+  position: absolute;
+  width: 90vw;
+  height: 22.5vw;
+  top: 3.5vw;
+  box-shadow: 0 0 0 0.5vw var(--db), 0 2.5vw 0 -0.5vw var(--db);
+  left: calc(50% - 45vw);
+  z-index: -2;
+}
+p:after {
+  content: "";
+  position: absolute;
+  width: 125%;
+  height: 125%;
+  background: var(--bg);
+  left: -12.5%;
+  top: -12.5%;
+  z-index: -1;
+}
+
+body.btn0 .buttons .btnwrap:first-of-type,
+body.btn0 .buttons:hover .btnwrap:first-of-type {
+  width: 8.5vw;
+  transform: translateX(calc(40vw - 4.25vw));
+  z-index: 9;
+}
+body.btn0 .buttons .btnwrap:first-of-type:before,
+body.btn0 .buttons:hover .btnwrap:first-of-type:before {
+  transform: translate(-50%, -50%) translateZ(0px) scale(1);
+}
+body.btn0 .buttons .btnwrap:first-of-type > div:before,
+body.btn0 .buttons:hover .btnwrap:first-of-type > div:before {
+  transform: translateY(100%);
+}
+body.btn0 .buttons .btnwrap:first-of-type > div:after,
+body.btn0 .buttons:hover .btnwrap:first-of-type > div:after {
+  transform: translateX(1.5vw);
+  transition-delay: 0s;
+}
+body.btn0 .buttons .btnwrap:first-of-type > div span > span.word > span.char,
+body.btn0 .buttons:hover .btnwrap:first-of-type > div span > span.word > span.char {
+  transform: translateY(-200%);
+}
+body.btn0 .buttons .btnwrap:nth-of-type(2),
+body.btn0 .buttons:hover .btnwrap:nth-of-type(2) {
+  transition: 0.4s var(--expo);
+  transform: translateX(200vw);
+  width: 0;
+}
+body.btn1 .buttons .btnwrap,
+body.btn1 .buttons:hover .btnwrap {
+  z-index: 9;
+}
+body.btn1 .buttons .btnwrap:last-of-type,
+body.btn1 .buttons:hover .btnwrap:last-of-type {
+  width: 8.5vw;
+  transform: translateX(calc(-40vw + 4.25vw));
+}
+body.btn1 .buttons .btnwrap:last-of-type:before,
+body.btn1 .buttons:hover .btnwrap:last-of-type:before {
+  transform: translate(-50%, -50%) translateZ(0px) scale(1);
+  background: var(--r);
+}
+body.btn1 .buttons .btnwrap:last-of-type > div:before,
+body.btn1 .buttons:hover .btnwrap:last-of-type > div:before {
+  transform: translateY(100%);
+}
+body.btn1 .buttons .btnwrap:last-of-type > div:after,
+body.btn1 .buttons:hover .btnwrap:last-of-type > div:after {
+  transform: translateX(1.5vw);
+  color: var(--r);
+  transition-delay: 0s;
+}
+body.btn1 .buttons .btnwrap:last-of-type > div span > span.word > span.char,
+body.btn1 .buttons:hover .btnwrap:last-of-type > div span > span.word > span.char {
+  transform: translateY(-200%);
+}
+body.btn1 .buttons .btnwrap:first-of-type,
+body.btn1 .buttons:hover .btnwrap:first-of-type {
+  transition: 0.4s var(--expo);
+  transform: translateX(-200vw);
+  width: 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+}
+.buttons:hover .btnwrap {
+  width: 30%;
+}
+.buttons:hover .btnwrap > div {
+  font-size: 3.5vw;
+}
+.buttons:hover .btnwrap:hover {
+  width: 60%;
+}
+.buttons:hover .btnwrap:hover > div {
+  font-size: 5vw;
+}
+.buttons:hover .btnwrap:hover > div span.char:before {
+  transform: scaleY(0);
+  transition: transform 0.3s var(--expo) 0s;
+  transform-origin: top;
+}
+.buttons:hover .btnwrap:hover ~ .btnwrap {
+  width: 30%;
+}
+.buttons:hover .btnwrap:hover ~ .btnwrap > div {
+  font-size: 3.5vw;
+}
+.buttons .btnwrap {
+  width: 47.5%;
+  position: relative;
+  height: 8.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s ease-in-out;
+  transform: translateZ(0px);
+}
+.buttons .btnwrap:before {
+  content: "";
+  position: absolute;
+  width: 200vw;
+  height: 200vw;
+  border-radius: 100%;
+  background: var(--db);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateZ(0px) scale(0);
+  transition: transform 1s var(--expo);
+}
+.buttons .btnwrap:last-of-type > div {
+  background: repeating-linear-gradient(45deg, var(--r) 0.25vw, var(--bg) 0.25vw, var(--bg) 1.5vw, var(--r) 1.5vw, var(--r) 1.75vw);
+}
+.buttons .btnwrap:last-of-type > div span.char {
+  position: relative;
+}
+.buttons .btnwrap:last-of-type > div span.char:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 25%;
+  background: var(--bg);
+  z-index: -1;
+  transition: transform 0.3s var(--elastic) 0.4s;
+  transform-origin: bottom;
+}
+.buttons .btnwrap button,
+.buttons .btnwrap > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  cursor: pointer;
+}
+.buttons .btnwrap > div:after {
+  content: "✗";
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  color: var(--db);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  font-size: 2.5vw;
+  left: 1vw;
+  border-radius: 100%;
+  z-index: 9;
+  transform: translateX(-200%) rotate(360deg);
+  transition: 0.3s var(--elastic);
+}
+.buttons .btnwrap:first-of-type {
+  --r: var(--bg);
+}
+.buttons .btnwrap:first-of-type > div:after {
+  content: "✓";
+}
+.buttons .btnwrap:first-of-type > div > span {
+  filter: url(#left);
+}
+.buttons .btnwrap > div > span {
+  filter: url(#right);
+}
+.buttons .btnwrap button:hover#buttonone ~ div:before {
+  background: var(--db);
+}
+.buttons .btnwrap button:hover ~ div:before {
+  transform-origin: top;
+  transform: scaleY(1) translate(-50%, 0) translateZ(0px);
+  transition: transform 0.4s ease-in-out, background 0.4s ease-in-out 0.4s;
+  border-radius: 0;
+  background: var(--r);
+}
+.buttons .btnwrap button:hover ~ div:after {
+  transform: translateX(0);
+  transition-delay: 0.4s;
+}
+.buttons .btnwrap button:hover ~ div > span span.char {
+  transform: translateY(-100%) translateZ(0px);
+  transition: transform 0.5s var(--expo) calc((var(--char-index) + 4) * 0.05s), color 0.4s ease-in-out;
+  color: var(--r);
+}
+.buttons .btnwrap > div {
+  z-index: 8;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.5vw;
+  text-transform: uppercase;
+  font-size: 4vw;
+  line-height: 1;
+  text-align: center;
+  color: var(--db);
+  box-shadow: 0 0 0 0.5vw var(--db), 0 0 0 1vw var(--bg);
+  background: var(--bg);
+  border-radius: 50vmin;
+  overflow: hidden;
+}
+.buttons .btnwrap > div:before {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  top: 0;
+  left: 50%;
+  background: var(--db);
+  transform: scaleY(0) translate(-50%, 0) translateZ(0px);
+  transform-origin: bottom;
+  transition: transform 0.4s ease-in-out 0.2s, border-radius 0.8s ease-in-out, background 0.8s ease-in-out;
+  border-radius: 100vw;
+}
+.buttons .btnwrap > div > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+  transition: 0.5s ease-in-out;
+}
+.buttons .btnwrap > div > span span.word {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.buttons .btnwrap > div > span span.char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 0.5s var(--expo) calc((var(--char-total) - var(--char-index)) * 0.035s);
+  top: 0%;
+  transform: translateY(0%) translateZ(0px);
+}
+.buttons .btnwrap > div > span span.char:after {
+  content: attr(data-char);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: var(--bg);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+  position: absolute;
+}

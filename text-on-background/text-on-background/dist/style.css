@@ -1,0 +1,26 @@
+html, body {
+  margin: 0;
+}
+
+svg#defs {
+  display: none;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjgiPjxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIwLjY4NzUiIGZpbGw9ImJsYWNrIj48L2NpcmNsZT48Y2lyY2xlIGN4PSIwIiBjeT0iOCIgcj0iMC42ODc1IiBmaWxsPSJibGFjayI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iNCIgY3k9IjgiIHI9IjAuNjg3NSIgZmlsbD0iYmxhY2siPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjQiIGN5PSIwIiByPSIwLjY4NzUiIGZpbGw9ImJsYWNrIj48L2NpcmNsZT48Y2lyY2xlIGN4PSIyIiBjeT0iNCIgcj0iMC42ODc1IiBmaWxsPSJibGFjayI+PC9jaXJjbGU+PC9zdmc+);
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+  background-color: navajowhite;
+}
+h1 {
+  font-size: 9em;
+  margin: 0 .5em;
+  color: navajowhite;
+}

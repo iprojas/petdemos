@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Text on background</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:900' rel='stylesheet' type='text/css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<svg id="defs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="Circle">
+      <circle r="0.6875" fill="black"></circle>
+    </g>
+    <pattern id="Dither" 
+             width="2px" height="4px" patternUnits="userSpaceOnUse">
+      <use x="0" y="0" xlink:href="#Circle"></use>
+      <use x="0" y="4" xlink:href="#Circle"></use>
+      <use x="2" y="4" xlink:href="#Circle"></use>
+      <use x="2" y="0" xlink:href="#Circle"></use>
+      <use x="1" y="2" xlink:href="#Circle"></use>
+    </pattern>
+    
+    <filter id="DitherFill" filterUnits="userSpaceOnUse">
+      <feImage xlink:href="#Dither" x="0" y="0" width="4" height="8" result="IMAGEFILL"></feImage>
+      <feTile in="IMAGEFILL" result="TILEPATTERN"></feTile>
+      <feComposite operator="in" in="TILEPATTERN" in2="SourceAlpha"></feComposite>
+    </filter>
+  </defs>
+</svg>
+
+<div class="container">
+  <h1>Think about something else.</h1>
+</div>
+<!-- partial -->
+  
+</body>
+</html>
