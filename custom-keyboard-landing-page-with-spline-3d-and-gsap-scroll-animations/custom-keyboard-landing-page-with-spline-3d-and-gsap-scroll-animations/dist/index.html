@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Custom Keyboard Landing Page with Spline 3D and GSAP Scroll Animations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;400;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- note: it might take a (little) while for Spline to load. -->
+
+<nav class="flex row">
+  <!--  made-up logo  -->
+  <svg width="85" height="29" viewBox="0 0 85 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.111538" y="0.111538" width="84.1" height="28.7769" rx="1.67308" stroke="white" stroke-opacity="0.1" stroke-width="0.223077" />
+    <rect x="1.56152" y="1.56154" width="25.8769" height="25.8769" rx="12.9385" fill="white" />
+    <rect x="1.67306" y="1.67308" width="25.6538" height="25.6538" rx="12.8269" stroke="white" stroke-opacity="0.1" stroke-width="0.223077" />
+    <rect x="29.2231" y="1.56154" width="25.8769" height="25.8769" rx="5.35385" fill="white" />
+    <rect x="29.3346" y="1.67308" width="25.6538" height="25.6538" rx="5.24231" stroke="white" stroke-opacity="0.1" stroke-width="0.223077" />
+    <rect x="56.8846" y="1.56154" width="25.8769" height="25.8769" rx="0.892308" fill="white" />
+    <rect x="56.9962" y="1.67308" width="25.6538" height="25.6538" rx="0.780769" stroke="white" stroke-opacity="0.1" stroke-width="0.223077" />
+    <rect x="12.9385" y="18.9615" width="2.9" height="5.13077" rx="1.45" fill="#7317cf" />
+    <rect x="13.05" y="19.0731" width="2.67692" height="4.90769" rx="1.33846" stroke="white" stroke-opacity="0.1" stroke-width="0.223077" />
+  </svg>
+
+  <a href="https://youtu.be/x3m1PGEfG5c" target=”_blank”>Watch on Youtube</a>
+</nav>
+
+<div class="bar"></div>
+
+<div class="canvas-cont">
+  <canvas id="canvas3d"></canvas>
+</div>
+
+<div id="hero" class="flex row">
+  <h1>YOUR<br>GAMES.<br>YOUR<br>
+    <div class="keyboard">
+      <span class="key">K</span>
+      <span class="key">E</span>
+      <span class="key">Y</span>
+      <span class="key">B</span>
+      <span class="key">O</span>
+      <span class="key">A</span>
+      <span class="key">R</span>
+      <span class="key">D</span>
+      .
+    </div>
+    
+  </h1>
+</div>
+
+<div id="part1" class="flex row">
+  <div></div>
+  <div class="part1-info flex column">
+    <h2>PLAY LIKE A PRO.</h2>
+    <p>With these keyboards, you'll get proper bounce, a bit of *click*, and lots of satisfaction.</p>
+    <button>Make a keyboard - It's easy!</button>
+  </div>
+</div>
+
+<div id="part2" class="flex row">
+  <div class="part2-info flex column">
+    <h2>CUSTOMIZE ALL THE WAY.</h2>
+    <p>It's all yours! Change the colors as you like. Make them purple, green, red, anything.</p>
+
+    <button>Customize a Keyboard</button>
+  </div>
+  <div></div>
+</div>
+
+<div id="part3" class="flex column">
+  <h2>#Spline3DAndGSAPAnimations</h2>
+  <a href="https://twitter.com/juxtopposed" target="_blank">By @Juxtopposed</a>
+</div>
+<!-- partial -->
+  <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+<script src='https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js'></script>
+<script src='https://unpkg.com/gsap@3/dist/ScrollToPlugin.min.js'></script><script type="module" src="./script.js"></script>
+
+</body>
+</html>

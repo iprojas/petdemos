@@ -1,0 +1,25 @@
+#vanta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff; /* Adjust for visibility */
+    font-size: 3rem; /* Adjust size as needed */
+    text-align: center;
+    font-family: 'Arial', sans-serif; /* Choose an appropriate font */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Soft shadow for depth */
+    opacity: 0.8; /* Adjust for blending effect */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Optional: Add interaction effect */
+.text-overlay:hover {
+    opacity: 1;
+}

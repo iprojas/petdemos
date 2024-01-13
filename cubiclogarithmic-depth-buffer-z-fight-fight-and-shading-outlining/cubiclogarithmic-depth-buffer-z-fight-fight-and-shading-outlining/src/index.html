@@ -1,0 +1,246 @@
+<script type="text/fragment" id="vertShader">#version 300 es
+  in vec3 position;
+  in vec2 uv;
+  in vec3 normal;
+  in mat4 translation;
+  in mat4 inverseTranspose;
+  in float scale;
+  in float id;
+  in float faceoffset;
+  in vec3 facecolour;
+  in vec3 colour;
+  
+  uniform mat4 u_viewMatrix;
+  uniform mat4 u_modelMatrix;
+  uniform mat4 u_modelViewMatrix;
+  uniform mat4 u_projectionMatrix;
+  uniform mat3 u_normalMatrix;
+  uniform float u_time;
+  uniform float u_logDepthDelta;
+  
+  out vec3 vNormal;
+  out vec3 vPosition;
+  out vec3 vWorldPosition;
+  out vec2 vUV;
+  out float vCol;
+  out float depth;
+  out vec3 facecol;
+  
+  #define EPSILON 0.01
+  
+  void main() {
+    vec3 pos = (translation*vec4(scale*position, 1.)).xyz;
+    // vec3 pos = position;
+    // vec3 pos = mat3(translation)*(scale*position);
+    
+    vec4 camPos = u_projectionMatrix * u_modelViewMatrix * vec4(pos, 1.0);
+    
+    // Modify the depth in clip space
+    depth = log2( max( EPSILON, camPos.w + 1.0 ) ) * u_logDepthDelta - 1.0;
+    // depth = (2.0 * depth - 1.0) * camPos.w; // debug
+    // depth = camPos.w;
+    // camPos.z = (2.0 * depth - 1.0) * camPos.w;
+    
+    gl_Position = camPos;
+    // gl_Position.w = depth;
+    gl_Position.z *= depth;
+    
+    vUV = uv;
+    vNormal = (inverseTranspose * vec4(normal,1)).xyz;
+    
+    vCol = faceoffset+id;
+    facecol = fract(facecolour+colour);
+  }
+</script>
+<script type="text/fragment" id="fragShader">#version 300 es
+  precision highp float;
+  
+  in vec3 vNormal;
+  in vec2 vUV;
+  in vec4 camPos;
+  in vec3 vPosition;
+  in vec3 vWorldPosition;
+  in float vCol;
+  in float depth;
+  in vec3 facecol;
+  
+  out vec4 colour;
+  
+  uniform float u_time;
+  uniform bool u_outlinestage;
+  uniform float u_logDepthDelta;
+  
+    // Procedural colour palettes curtesy Inigo Quilez
+  // https://iquilezles.org/www/articles/palettes/palettes.htm
+  vec3 palette( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
+    return a + b*cos( 6.28318*(c*t+d) );
+  }
+  
+  // Simplex 2D noise
+  //
+  vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+  float snoise(vec2 v){
+    const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+             -0.577350269189626, 0.024390243902439);
+    vec2 i  = floor(v + dot(v, C.yy) );
+    vec2 x0 = v -   i + dot(i, C.xx);
+    vec2 i1;
+    i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec4 x12 = x0.xyxy + C.xxzz;
+    x12.xy -= i1;
+    i = mod(i, 289.0);
+    vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+    + i.x + vec3(0.0, i1.x, 1.0 ));
+    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+      dot(x12.zw,x12.zw)), 0.0);
+    m = m*m ;
+    m = m*m ;
+    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+    vec3 h = abs(x) - 0.5;
+    vec3 ox = floor(x + 0.5);
+    vec3 a0 = x - ox;
+    m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+    vec3 g;
+    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+    return 130.0 * dot(m, g);
+  }
+  
+  void main() {
+    
+    gl_FragDepth = gl_FragCoord.z;
+    // gl_FragDepth = (log2(depth * 0.5 + 1.0)) * 0.5;
+    
+    if(u_outlinestage == true) {
+      vec2 d = abs(vUV-.5)-.49;
+      float f = length(max(d,0.0)) + min(max(d.x,d.y),0.0);
+
+      // The following line is for debugging the geometry.
+      colour = vec4(1,vUV,1).grba;
+      colour.rgb = palette( vCol, vec3(.5),vec3(1),vec3(1),vec3(0.0,0.33,0.67)*2.);
+      colour.rgb = facecol;
+      // colour = vec4(vNormal*.5+.5,1);
+      // colour = mix(colour, vec4(0,0,0,1), smoothstep(0.,0.01,f));
+    
+    } else {
+      float d = dot(vNormal, normalize(vec3(.5,1,0)));
+      float shade = .4 + smoothstep(0., 1., d);
+      colour = vec4(vec3(shade), 1);
+    }
+    
+  }
+</script>
+<script type="text/fragment" id="renderShader">#version 300 es
+  precision highp float;
+
+  uniform vec2 u_resolution;
+  uniform vec2 u_screenresolution;
+  uniform float u_time;
+  uniform vec3 u_camera;
+
+  uniform sampler2D b_render;
+  uniform sampler2D b_depthrender;
+  uniform sampler2D b_depth;
+  uniform sampler2D b_buffer;
+
+  in vec2 v_uv;
+  out vec4 colour;
+  
+  float dp(vec2 p) {
+    float n = u_camera.x;
+    float f = u_camera.y;
+    float z = texture(b_depth, p / u_resolution).x;
+    float g = (2.0 * n) / (f + n - z*(f-n));
+    
+    return g;
+  }
+  vec3 np(vec2 p) {
+    return texture(b_depthrender, p / u_resolution).xyz;
+  }
+  
+  void main() {
+        
+    vec2 p = gl_FragCoord.xy;
+    
+    int k = 1;
+    
+    float grey = dp(p);
+    float d = 0.;
+    for(int x = -k; x <= k; x+=k) {
+      for(int y = -k; y <= k; y+=k) {
+        if(x==0&&y==0) continue;
+        d += abs(grey - dp(p+vec2(x,y)));
+      }
+    }
+    
+    vec4 col = texture(b_depthrender, gl_FragCoord.xy / u_resolution);
+    float n = 0.;
+    for(int x = -k; x <= k; x+=k) {
+      for(int y = -k; y <= k; y+=k) {
+        if(x==0&&y==0) continue;
+        n += length(col.xyz - np(p+vec2(x,y)));
+      }
+    }
+    
+    float a = smoothstep(u_camera.z, 1., grey);
+    
+    // col = mix(texture(b_buffer, gl_FragCoord.xy / u_resolution), col, col.a);
+    
+    col = mix(texture(b_render, gl_FragCoord.xy / u_resolution), vec4(vec3(.2),1), pow(d+n, 2.));
+    // colour = vec4(mix(col.rgb, vec3(.95), a),col.a*(1.-a));
+    // colour = vec4(col.rgb, col.a*(1.-a));
+    colour = col;
+  }
+</script>
+<script type="text/fragment" id="fadeShader">#version 300 es
+  precision highp float;
+
+  uniform vec2 u_resolution;
+  uniform vec2 u_screenresolution;
+  uniform float u_time;
+  uniform vec3 u_camera;
+
+  uniform sampler2D b_render;
+  uniform sampler2D b_buffer;
+
+  in vec2 v_uv;
+  out vec4 colour;
+  
+  void main() {
+    
+    vec2 p = gl_FragCoord.xy;
+    
+    vec4 col = texture(b_render, gl_FragCoord.xy / u_resolution);
+    
+    vec4 buf = texture(b_buffer, gl_FragCoord.xy / u_resolution);
+    // col = mix(buf, col*.1, col.a);
+    // col = buf*.9+col*.1;
+    col = mix(buf*vec4(1,1,1,.99), col, col.a);
+    
+    colour = vec4(col);
+  }
+</script>
+<script type="text/fragment" id="outputShader">#version 300 es
+  precision highp float;
+
+  uniform vec2 u_resolution;
+  uniform vec2 u_screenresolution;
+  uniform float u_time;
+  uniform vec3 u_camera;
+
+  uniform sampler2D b_render;
+
+  in vec2 v_uv;
+  out vec4 colour;
+  
+  void main() {
+    
+    vec2 p = gl_FragCoord.xy;
+    
+    vec4 col = texture(b_render, gl_FragCoord.xy / u_resolution);
+    col = mix(vec4(.95), col, col.a);
+    
+    colour = col;
+  }
+</script>

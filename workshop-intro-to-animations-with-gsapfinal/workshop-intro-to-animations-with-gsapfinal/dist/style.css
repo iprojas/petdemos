@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Kulim+Park:ital,wght@0,200;0,400;1,600&family=Modak&display=swap");
+
+body {
+  height: 100vh;
+  background-color: #baa6cb;
+}
+
+* {
+  background-image: none !important;
+}
+
+.container {
+  width: 400%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.bg-silver {
+  position: absolute;
+  width: 500px;
+}
+
+h1 {
+  width: 60%;
+  font-family: "Krona One";
+  font-size: 90px !important;
+  color: #cbff98 !important;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-family: "Modak";
+  font-size: 100px;
+  font-weight: normal;
+}
+
+.panel1 {
+  background-color: #a9b6a2;
+}
+.panel2 {
+  background-color: #ef704f;
+}
+.panel3 {
+  background-color: #ececec;
+}
+.panel4 {
+  background-color: #baa6cb;
+}
+
+.panel1 {
+  gap: 20px;
+}
+
+.panel1 img {
+  width: 20%;
+}
+
+.panel2 img {
+  width: 50%;
+  align-self: flex-end;
+  margin-bottom: -20px;
+}
+
+svg {
+  max-height: 100vh;
+}
+
+#end {
+  visibility: hidden;
+}

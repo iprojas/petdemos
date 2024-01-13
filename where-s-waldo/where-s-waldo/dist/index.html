@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Where&#39;s Waldo?</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<svg viewBox="0 0 2828 1828" class="ww">
+	<defs>
+		<mask id="m">
+			<rect height="100%" width="100%" />
+			<circle id="maskCircle" cx="-300" cy="-300" r="200" fill="white" />
+		</mask>
+		<linearGradient id="magnifyHandle" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(60)">
+			<stop offset="0%" stop-color="#ccc"/>
+			<stop offset="50%" stop-color="#aaa"/>
+			<stop offset="100%" stop-color="#ccc"/>
+		</linearGradient>
+		<radialGradient id="magnifyLens">
+			<stop offset="85%" stop-color="rgba(250,250,250,0)"/>
+			<stop offset="95%" stop-color="rgba(250,250,250,0.5)"/>
+			<stop offset="98%" stop-color="rgba(250,250,250,0.5)"/>
+			<stop offset="100%" stop-color="#111"/>
+		</radialGradient>
+		<radialGradient id="magnifyLensFound">
+			<stop offset="85%" stop-color="rgba(50,250,50,0)"/>
+			<stop offset="95%" stop-color="rgba(50,250,50,0.5)"/>
+			<stop offset="98%" stop-color="rgba(50,250,50,0.5)"/>
+			<stop offset="100%" stop-color="rgba(50,225,50,1)"/>
+		</radialGradient>
+		<image id="imgg" width="2828" href="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*7v_75ZGg1CTmWAw1rEgMHQ.jpeg" />
+	</defs>
+	<use href="#imgg"/>
+	<g mask="url(#m)">
+		<use id="zoomUse" x="0" y="0" href="#imgg" filter="hue-rotate(10deg)" transform="scale(2)"  />
+	</g>
+	<circle id="mag1" cx="-300" cy="-300" r="210" stroke="url(#magnifyLens)" stroke-width="50" fill="none" />
+	<circle id="mag0" cx="-300" cy="-300" r="220" stroke="#111" stroke-width="10" fill="none" stroke-linejoin="round" transform="rotate(45)">
+		<animate attributeName="stroke-dasharray" values="0; 180; 0" dur="5s" begin="0s" repeatCount="indefinite" keyTimes="0;0.5;1" keySplines="0.9 0.1 0.1 0.9; 0.9 0.1 0.1 0.9" calcMode="spline" />
+	</circle>
+	<path id="mag2" d="M -200 -200 l100 100" stroke-width="65" stroke="#111" stroke-linecap="round" fill="none"/>
+	<path id="mag3" d="M -200 -200 l100 100" stroke-width="50" stroke="url(#magnifyHandle)" stroke-linecap="round" fill="none"/>
+</svg>
+
+<input type="range" id="zoomSlider" min="2" max="10" step="0.5" value="2">
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

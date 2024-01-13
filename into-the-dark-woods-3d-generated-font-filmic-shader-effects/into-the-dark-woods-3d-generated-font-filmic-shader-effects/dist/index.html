@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Into the Dark Woods ✨ 3D generated font &amp; filmic shader effects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="overlay-container">
+  <p>Loading scene...✨</p>
+</div>
+<div id="scene-container"> 
+</div>
+<div class="credits">
+  <a href="https://codepen.io/ScavengerFrontend" target="_blank">art & code <br> by Anna Zenn <br/> Scavenger ↗<a/>
+</div>
+<div id="controls">
+  <button class="btn btn--scene btn--active" data-scene ="classic">Classic</button>
+  <button class="btn btn--scene" data-scene="vintage">Vintage</button>
+  <button class="btn btn--scene" data-scene="cinematic">Cinematic</button>
+  <button class="btn btn--scene" data-scene="metal">Metal</button>
+  <button class="btn btn--close">Change Styles ✨</button>
+</div>
+
+
+<!-- MATCAP VERTEX SHADER --> 
+<script type="x-shader/x-vertex" id="vs-matcap">
+
+  varying vec2 vN;
+
+	void main() {
+
+		vec3 e = normalize( vec3( modelViewMatrix * vec4( position, 1.0 ) ) );
+		vec3 n = normalize( normalMatrix * normal );
+
+		vec3 r = reflect( e, n );
+		float m = 2. * sqrt( pow( r.x, 2. ) + pow( r.y, 2. ) + pow( r.z + 1., 2. ) );
+		vN = r.xy / m + .5;
+
+		gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1. );
+
+	}
+
+</script>
+
+<!-- MATCAP FRAGMENT SHADER --> 
+<script type="x-shader/x-fragment" id="fs-matcap">
+
+  uniform sampler2D tMatCap;
+
+	varying vec2 vN;
+
+	void main() {
+		
+		vec3 base = texture2D( tMatCap, vN ).rgb;
+		gl_FragColor = vec4( base, 1.0 );
+
+	}
+	
+</script>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/911157/Tree.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/911157/TreeGeometry.js'></script><script type="module" src="./script.js"></script>
+
+</body>
+</html>

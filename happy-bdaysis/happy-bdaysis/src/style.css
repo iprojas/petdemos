@@ -1,0 +1,152 @@
+body{
+  background: blue;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.hide
+{
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.container
+{
+    height: 100%;
+    background-color: #dcf2fb;
+    background-image: url(http://getfirebomb.com/css/images/bg-dither.gif);
+    background-position: top left;
+    background-repeat: repeat-x;
+}
+
+    .boom .container
+    {
+        background-image: url(http://getfirebomb.com/css/images/bg-dither-boom.gif);
+        background-color: #ffead8;
+    }
+
+#boomBGLoader
+{
+    background-image: url(http://getfirebomb.com/css/images/bg-dither-boom.gif);
+}
+
+#centered {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 60px;
+    width: 192px;
+    height: 164px;
+    text-align: right;
+    padding-top: 144px;
+}
+
+#bomb
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 192px;
+    height: 144px;
+    /*background: url(http://getfirebomb.com/css/images/bomb-logo.gif);*/
+}
+
+/* logo shenanigans */
+#bomb
+{
+    -webkit-perspective: 400px;
+    -moz-perspective: 400px;
+    perspective: 400px;
+}
+
+#bomb div
+{
+    position: absolute;
+    width: 12px;
+    height: 12px;
+}
+
+.fire
+{
+    -webkit-animation: burn 600ms infinite linear;
+    -moz-animation: burn 600ms infinite linear;
+}
+
+@-webkit-keyframes burn
+{
+    0%
+    {
+        background-color: #f00;
+    }
+    25%
+    {
+        background-color: #ff0;
+    }
+    40%
+    {
+        background-color: #f60;
+    }
+    55%
+    {
+        background-color: #600;
+    }
+    80%
+    {
+        background-color: #f60;
+    }
+    100%
+    {
+        background-color: #f00;
+    }
+}
+
+@-moz-keyframes burn
+{
+    0%
+    {
+        background-color: #f00;
+    }
+    25%
+    {
+        background-color: #ff0;
+    }
+    40%
+    {
+        background-color: #f60;
+    }
+    55%
+    {
+        background-color: #600;
+    }
+    80%
+    {
+        background-color: #f60;
+    }
+    100%
+    {
+        background-color: #f00;
+    }
+}
+
+.spark
+{
+    -ms-transform: translate(-9999px, 0) scale(1, 1);
+    -webkit-transform: translate3d(-9999px, 0, 0) scale3d(1, 1, 1);
+    -moz-transform: translate(-9999px, 0) scale(1, 1);
+    -o-transform: translate(-9999px, 0) scale(1, 1);
+    transform: translate(-9999px, 0) scale(1, 1);
+}
+
+.sparking
+{
+    -webkit-transition: opacity 600ms ease-in;
+    -moz-transition: opacity 600ms ease-in;
+}
