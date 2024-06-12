@@ -350,3 +350,8 @@ body a {
 .timeline__slide-content p:last-child {
     margin-bottom: 0;
 }
+
+.icon-img{
+    max-width: 100px;
+    margin-left: 20%;
+}
