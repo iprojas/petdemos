@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+		
+		<!-- amCharts javascript sources -->
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+		
+
+		<!-- amCharts javascript code -->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "serial",
+					"categoryField": "category",
+					"startDuration": 0,
+          "addClassNames": true,
+					"categoryAxis": {
+						"axisThickness": 0,
+						"color": "#333333",
+						"dashLength": 5,
+						"gridAlpha": 0.11,
+						"tickLength": 0
+					},
+					"chartCursor": {
+						"enabled": true,
+						"bulletsEnabled": true,
+						"bulletSize": 20,
+						"categoryBalloonColor": "#FCD6A9",
+						"color": "#000000",
+						"cursorColor": "#FCD6A9",
+						"graphBulletAlpha": 0,
+						"graphBulletSize": 0,
+						"selectionAlpha": 0,
+						"selectWithoutZooming": true,
+						"valueLineAlpha": 0,
+						"zoomable": false
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonColor": "#FCD6A9",
+							"bullet": "round",
+							"bulletBorderAlpha": 1,
+							"bulletBorderColor": "RGBA(144, 19, 254, 0.68)",
+							"bulletBorderThickness": 1,
+							"bulletColor": "#FFFFFF",
+							"bulletSize": 5,
+							"color": "",
+							"dashLength": 8,
+							"fillColors": "",
+							"id": "AmGraph-1",
+							"lineColor": "RGBA(144, 19, 254, 0.68)",
+							"title": "Предыдущий год",
+							"topRadius": 0,
+							"type": "smoothedLine",
+							"valueField": "column-1"
+						},
+						{
+							"balloonColor": "#FCD6A9",
+							"bullet": "round",
+							"bulletBorderAlpha": 1,
+							"bulletBorderColor": " #2684FC",
+							"bulletColor": "#FFFFFF",
+							"color": " #2684FC",
+							"cursorBulletAlpha": 0,
+							"customBullet": "",
+							"fontSize": 20,
+							"id": "AmGraph-2",
+							"labelPosition": "bottom",
+							"lineColor": " #2684FC",
+							"lineThickness": 3,
+							"title": "Текущий год",
+							"type": "smoothedLine",
+							"valueField": "column-2"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"maximum": 100,
+							"minimum": 80,
+							"axisThickness": 0,
+							"color": "#333333",
+							"dashLength": 5,
+							"gridAlpha": 0.05,
+							"labelFrequency": 2,
+							"tickLength": 0,
+							"title": ""
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"align": "right",
+						"position": "top",
+						"useGraphSettings": true
+					},
+					"titles": [],
+					"dataProvider": [
+						{
+							"category": "янв",
+							"column-1": "93.6",
+							"column-2": "90.5"
+						},
+						{
+							"category": "фев",
+							"column-1": "92.1",
+							"column-2": "94.2"
+						},
+						{
+							"category": "мар",
+							"column-1": "90.5",
+							"column-2": "95.1"
+						},
+						{
+							"category": "апр",
+							"column-1": "87.4",
+							"column-2": "94.9"
+						},
+						{
+							"category": "май",
+							"column-1": "92.5",
+							"column-2": "92.5"
+						},
+						{
+							"category": "июн",
+							"column-1": "91.3",
+							"column-2": "93.5"
+						},
+						{
+							"category": "июл",
+							"column-1": "94.3",
+							"column-2": "95.7"
+						},
+						{
+							"category": "авг",
+							"column-1": "92.5",
+							"column-2": null
+						},
+						{
+							"category": "сен",
+							"column-1": "93.6",
+							"column-2": null
+						},
+						{
+							"category": "окт",
+							"column-1": "94.5",
+							"column-2": null
+						},
+						{
+							"category": "ноя",
+							"column-1": "94.8",
+							"column-2": null
+						},
+						{
+							"category": "дек",
+							"column-1": "95.1",
+							"column-2": null
+						}
+					]
+				}
+			);
+		</script>
+	</head>
+	<body>
+		<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+	</body>
+</html>
