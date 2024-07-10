@@ -121,7 +121,7 @@ h1 {
   }
 }
 .f {
-  height: 80%;
+  height: 60%;
   width: calc(100% / 8);
   background: #FF8484;
   position: absolute;
@@ -135,7 +135,7 @@ h1 {
     height: 0;
   }
   100% {
-    height: 80%;
+    height: 60%;
   }
 }
 .sa {
