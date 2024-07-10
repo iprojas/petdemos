@@ -5,7 +5,7 @@ body {
 
 h1 {
   font-family: "Montserrat", cursive;
-  color: #FF8484;
+  color: #2c3e50;
   text-shadow: 2px 2px #BA6161;
   text-align: center;
 }
@@ -23,8 +23,8 @@ h1 {
   width: 90%;
   height: 90%;
   position: absolute;
-  border-left: 2px solid #FF8484;
-  border-bottom: 2px solid #FF8484;
+  border-left: 4px solid #2c3e50;
+  border-bottom: 4px solid #2c3e50;
   left: 5%;
 }
 
@@ -51,11 +51,11 @@ h1 {
 .m {
   height: 5%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 0;
-  animation: up1 1s ease-in;
+  animation: up1 0.5s ease-in;
 }
 
 @keyframes up1 {
@@ -69,7 +69,7 @@ h1 {
 .tu {
   height: 10%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 14.2857142857%;
@@ -87,11 +87,11 @@ h1 {
 .w {
   height: 20%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 28.5714285714%;
-  animation: up3 1s ease-in;
+  animation: up3 2s ease-in;
 }
 
 @keyframes up3 {
@@ -105,11 +105,11 @@ h1 {
 .tr {
   height: 40%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 42.8571428571%;
-  animation: up4 1s ease-in;
+  animation: up4 4s ease-in;
 }
 
 @keyframes up4 {
@@ -123,11 +123,11 @@ h1 {
 .f {
   height: 60%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 57.1428571429%;
-  animation: up5 1s ease-in;
+  animation: up5 5s ease-in;
 }
 
 @keyframes up5 {
@@ -139,13 +139,13 @@ h1 {
   }
 }
 .sa {
-  height: 160%;
+  height: 100%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 71.4285714286%;
-  animation: up6 1s ease-in;
+  animation: up6 6s ease-in;
 }
 
 @keyframes up6 {
@@ -153,17 +153,17 @@ h1 {
     height: 0;
   }
   100% {
-    height: 160%;
+    height: 100%;
   }
 }
 .su {
   height: 10%;
   width: calc(100% / 8);
-  background: #FF8484;
+  background: #2c3e50;
   position: absolute;
   bottom: 0;
   left: 85.7142857143%;
-  animation: up7 1s ease-in;
+  animation: up7 4s ease-in;
 }
 
 @keyframes up7 {
